@@ -10,14 +10,16 @@ Created by Mac Lobdell
 
 Install Python 3 (I tested this with Python 3.7.6), then run the following commands.
 
-`pip install pycurl`
-`pip install websocket-client`
+```
+pip install pycurl
+pip install websocket-client
+```
 
 ## Usage
 
 Connect a device to Pelion Device Management and get an API key. Follow the guide at https://www.pelion.com/guides/connect-device-to-pelion/.
 
-Open `pelion_websocket.py`, change the device_id to a device you have connected. You can get that information on the device's serial terminal when it registers to Pelion or in the Pelion Device Management Console. Note that you can get notifications on large groups of devices, but for this example, it just uses one.
+Open `pelion_websocket.py`, change the `device_id` to a device you have connected. You can get that information on the device's serial terminal when it registers to Pelion or in the Pelion Device Management Console. Note that you can get notifications on large groups of devices, but for this example, it just uses one.
 
 Then run the script:
 
