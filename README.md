@@ -33,11 +33,18 @@ On the Device's serial port
 
 On the notification channel, you should get a message such as:
 
-`{"ep":"0172b9ba5409000000000001001117f5","path":"/3200/0/5501","ct":"text/plain","payload":"NTc=","max-age":0}`
+`#{"notifications":[{"ep":"0172b9ba5409000000000001001117f5","path":"/3200/0/5501","ct":"text/plain","payload":"NzE=","max-age":0}]}`
 
-The initial version of this script doesn't parse the notification and decode the payload, but the value is encoded in Base64.
+There can be multiple notifications in a message.
 
-If you decode the value `NTc=` from Base64, the result is `57`.
+The notifications are parsed and the device id, resource uri, and payload are decoded and printed.
 
+```
+device: 0172b9ba5409000000000001001117f5
+resource: /3200/0/5501
+value: b'57'
+```
+
+The payload value is encoded in Base64. For example, decoding the value `NTc=` results in `57`.
 
 To close the websocket, press CTRL+C to kill the process.

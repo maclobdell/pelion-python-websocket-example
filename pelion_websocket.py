@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import sys, pycurl, certifi, websocket, base64
+import sys, pycurl, certifi, websocket, json, base64
 from io import BytesIO
 
 def main(argv):
@@ -64,7 +64,25 @@ def create_websocket(api_key):
 
 def on_message(ws, message):
     print(message)
-    #todo: decode messages
+    #example notification that this parses
+    #{"notifications":[{"ep":"0172b9ba5409000000000001001117f5","path":"/3200/0/5501","ct":"text/plain","payload":"NzE=","max-age":0}]}
+
+    #convert from string to dict object
+    msg = json.loads(message)
+    #parse message for notifications
+    for notification in msg['notifications']:
+        #check for the device id, not always the same as endpoint id, but called endpoint here
+        if "ep" in notification:
+            ep = notification['ep']
+            print("device: " + ep)
+        #check for the resource uri, aka path
+        if "path" in notification:
+            resource_uri = notification['path']
+            print("resource: " + resource_uri)
+        #check for the resource value, aka payload
+        if "payload" in notification:
+            resource_value = str(base64.b64decode(notification['payload']))
+            print("value: " + resource_value)
 
 def on_error(ws, error):
     print(error)
@@ -73,7 +91,7 @@ def on_close(ws):
     print("### closed ###")
 
 def on_open(ws):
-    print("open")
+    print("### opened ###")
 
 
 def subscribe_to_resource(api_key,device_id,resource_uri):
