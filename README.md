@@ -33,7 +33,7 @@ On the Device's serial port
 
 On the notification channel, you should get a message such as:
 
-`#{"notifications":[{"ep":"0172b9ba5409000000000001001117f5","path":"/3200/0/5501","ct":"text/plain","payload":"NzE=","max-age":0}]}`
+`#{"notifications":[{"ep":"0172b9ba5409000000000001001117f5","path":"/3200/0/5501","ct":"text/plain","payload":"NTc=","max-age":0}]}`
 
 There can be multiple notifications in a message.
 
